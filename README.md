@@ -1,2 +1,2 @@
 # Algorithm
-Algorithm Study by python
+Study  Algorithm by python
