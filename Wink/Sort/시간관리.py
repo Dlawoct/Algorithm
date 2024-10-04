@@ -18,6 +18,7 @@ for j in range(1,N): # 1, 2, 3
         time -= arr[j][1]
     else:
         time = arr[j][0] - arr[j][1]
+        
 if time >=0:
     print(time)
 else:
