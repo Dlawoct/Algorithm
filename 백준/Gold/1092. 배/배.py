@@ -20,8 +20,10 @@ cnt = 0
 if crain[0] < box[0]:
     print(-1)
 else:
-    while len(box):
+    while len(box) > 0 :
         for i in crain:
+            if box and i < box[-1]: # 박스가 남아있지만 박스들 중 가장 가벼운 박스를 못들면 생략
+                continue
             for j in box:
                 if i >= j:
                     box.remove(j)
