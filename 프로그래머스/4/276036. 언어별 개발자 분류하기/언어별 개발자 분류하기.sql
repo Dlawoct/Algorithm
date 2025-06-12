@@ -1,20 +1,19 @@
-with tmp1
-as (
-    select 
-        (select sum(code) from skillcodes where category = "Front End") as frontend,
-        (select sum(code) from skillcodes where name = "Python") as python,
-        (select sum(code) from skillcodes where name = "C#") as cshop
-), tmp2
-as (
-    select 
-    case
-        when skill_code & t.frontend > 0 and skill_code & t.python > 0 then 'A'
-        when skill_code & t.cshop > 0 then 'B'
-        when skill_code & t.frontend > 0 then 'C'
-    end as grade, id, email
-    from developers, tmp1 t
-)
-select *
-from tmp2
+with skill as(
+    select
+        (select sum(code) from skillcodes where category = "Front End") as front,
+        (select sum(code) from skillcodes where name = "Python") as py,
+        (select sum(code) from skillcodes where name = "C#") as Cshrp
+ ), tmp as (
+    select
+    case 
+        when skill_code & front > 0 and skill_code & py > 0 then 'A'
+        when skill_code & Cshrp > 0 then 'B'
+        when skill_code & front > 0 then 'C'
+     end as GRADE,
+     id, email
+    from developers d, skill s
+ )
+ select *
+from tmp
 where grade is not null
 order by grade, id
